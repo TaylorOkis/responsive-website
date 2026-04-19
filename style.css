@@ -64,12 +64,20 @@
     --color-button-primary-border: var(--c-teal);
     --color-button-primary-border-hover: var(--c-dark-teal);
     --color-button-primary-text: var(--c-dark-gray);
+    --color-button-white-bg: var(--c-white);
+    --color-button-white-bg-hover: var(--c-teal);
+    --color-button-white-border: var(--c-white);
+    --color-button-white-border-hover: var(--c-teal);
+    --color-button-white-text: var(--c-dark-gray);
     --color-button-secondary-bg: var(--c-transparent);
     --color-button-secondary-bg-hover: var(--c-white);
     --color-button-secondary-border: var(--c-white);
     --color-button-secondary-text: var(--c-white);
     --color-button-secondary-text-hover: var(--color-hero-bg);
     --color-fullwidth-bg: var(--c-magenta);
+    --color-cta-gradient1: var(--c-dark-gray);
+    --color-cta-gradient2: var(--c-purple);
+    --color-cta-gradient3: var(--c-teal);
   }
 
   *,
@@ -155,6 +163,24 @@
       padding-block: 80px;
     }
   }
+
+  .fullwidth {
+    text-align: center;
+
+    .fullwidth__wrapper {
+      display: grid;
+      justify-items: center;
+    }
+
+    .fullwidth__title {
+      margin-block-end: 20px;
+    }
+
+    .fullwidth__description {
+      max-width: 80ch;
+      margin-block-end: 40px;
+    }
+  }
 }
 
 @layer component {
@@ -178,6 +204,17 @@
       &:hover {
         background-color: var(--color-button-primary-bg-hover);
         border-color: var(--color-button-primary-border-hover);
+      }
+
+      &.white {
+        background-color: var(--color-button-white-bg);
+        color: var(--color-button-white-text);
+        border: 2px solid var(--color-button-white-border);
+
+        &:hover {
+          background-color: var(--color-button-white-bg-hover);
+          border-color: var(--color-button-white-border-hover);
+        }
       }
     }
 
@@ -343,21 +380,6 @@
     background-color: var(--color-fullwidth-bg);
     color: var(--color-text-light);
 
-    .fw-feature__wrapper {
-      text-align: center;
-      display: grid;
-      justify-items: center;
-    }
-
-    .fw-feature__title {
-      margin-block-end: 20px;
-    }
-
-    .fw-feature__description {
-      max-width: 80ch;
-      margin-block-end: 40px;
-    }
-
     .fw-feature__image {
       width: 100%;
       max-width: calc(792 / 16 * 1rem);
@@ -414,6 +436,28 @@
     }
 
     .testimonial__author-description {
+    }
+  }
+
+  .cta {
+    background: linear-gradient(
+      to right,
+      var(--color-cta-gradient1),
+      var(--color-cta-gradient2) 75%,
+      var(--color-cta-gradient3) 150%
+    );
+    color: var(--color-text-light);
+
+    @media (width >= calc(1000 / 16 * 1rem)) {
+      background: linear-gradient(
+        to right,
+        var(--color-cta-gradient1),
+        var(--color-cta-gradient2) 55%,
+        var(--color-cta-gradient3) 110%
+      );
+    }
+
+    .cta__button {
     }
   }
 }
