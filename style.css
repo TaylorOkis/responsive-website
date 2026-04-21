@@ -486,24 +486,76 @@
   }
 
   .testimonial {
+    --color-bg: var(--color-main-bg);
+    --color-text: var(--color-text-dark);
+    --color-icon: var(--c-teal);
+
+    &.dark {
+      --color-bg: var(--c-purple);
+      --color-text: var(--color-text-light);
+      --color-icon: hsl(0, 0%, 100%, 50%);
+    }
+
+    background-color: var(--color-bg);
+    color: var(--color-text);
+
     .testimonial__wrapper {
-      max-width: calc(795 / 16 * 1rem);
     }
 
     .testimonial__figure {
+      @media (width >= calc(1000 / 16 * 1rem)) {
+        display: grid;
+        column-gap: 40px;
+        grid-template-columns: repeat(6, 1fr);
+        grid-template-rows: repeat(2, auto);
+        grid-template-areas:
+          "l-quote quote quote quote quote r-quote"
+          ". author author author author .";
+      }
     }
 
     .testimonial__icon {
       width: calc(52 / 16 * 1rem);
       margin-block-end: 20px;
 
+      &:first-child {
+        @media (width >= calc(1000 / 16 * 1rem)) {
+          justify-self: end;
+          grid-area: l-quote;
+        }
+      }
+
+      &:last-child {
+        @media (width < calc(1000 / 16 * 1rem)) {
+          display: none;
+        }
+
+        @media (width >= calc(1000 / 16 * 1rem)) {
+          grid-area: r-quote;
+          align-self: end;
+          rotate: 180deg;
+        }
+      }
+
       @media (width >= calc(600 / 16 * 1rem)) {
         width: calc(78 / 16 * 1rem);
         margin-block-end: 30px;
       }
+
+      @media (width >= calc(1000 / 16 * 1rem)) {
+        margin-block-end: 0;
+      }
+    }
+
+    .testimonial__icon-path {
+      fill: var(--color-icon);
     }
 
     .testimonial__blockquote {
+      @media (width >= calc(1000 / 16 * 1rem)) {
+        grid-area: quote;
+        padding-block-start: 40px;
+      }
     }
 
     .testimonial__quote-text {
@@ -526,6 +578,10 @@
       @media (width >= calc(600 / 16 * 1rem)) {
         flex-direction: row;
         text-align: left;
+      }
+
+      @media (width >= calc(1000 / 16 * 1rem)) {
+        grid-area: author;
       }
     }
 
